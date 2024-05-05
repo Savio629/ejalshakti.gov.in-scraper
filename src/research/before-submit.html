@@ -1,0 +1,975 @@
+<html>
+
+<head>
+    <title>Abstract Data</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../../JJM/Content/CSS/font-awesome.min.css">
+    <link rel="shortcut icon" href="/JJM/JJM/Content/Images/favicon.ico">
+    <link href="../Content/css/jjm.css" rel="stylesheet">
+    <link href="../Content/css/JJMFont.css" rel="stylesheet">
+    <link href="../Content/css/FixHdr.css" rel="stylesheet">
+    <script type="text/javascript">
+        PagePath = '/JJM/';
+        ReportGenerationDateTime = '05/05/2024 08:32:32';
+        LastUpdatedOn = '04/05/2024';
+    </script>
+    <script src="/JJM/JJMReports/Content/JS/jquery-3.6.0.min.js" type="text/javascript"></script>
+    <script src="/JJM/JJMReports/Content/JS/Print.js" type="text/javascript"></script>
+    <style type="text/css">
+        body {
+            margin: 0;
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 1.5;
+            color: #000;
+            text-align: left;
+            background-color: #f5f5f5;
+            /* font-family: 'Helvetica', 'Arial'!important; */
+            /* font-family: 'Exo 2', sans-serif; */
+            font-family: 'Noto Sans', sans-serif;
+            letter-spacing: .03em !important;
+        }
+
+        .w3-quarter img {
+            margin-bottom: -6px;
+            cursor: pointer
+        }
+
+        .w3-quarter img:hover {
+            opacity: 0.6;
+            transition: 0.3s
+        }
+
+        .header {
+            height: 80px;
+            left: 260px;
+        }
+
+        .rep-header {
+            height: 80px;
+            display: inline-block;
+            text-align: left;
+            position: absolute;
+            left: 0;
+            top: 0;
+            background-color: #003b64;
+            transition: all .2s ease;
+            z-index: 4;
+            position: fixed;
+            border-top-left-radius: 0px;
+            border-top-right-radius: 0px;
+            width: 275px;
+        }
+
+        .rep-header .jjmmenu {
+            display: inline-flex !important;
+            height: 100%;
+            justify-content: flex-start;
+            align-items: center;
+            font-size: 1.125rem;
+            color: #fff;
+            text-decoration: none;
+            padding-left: 1.25rem;
+            font-weight: 700;
+            top: 10px;
+        }
+
+        .hamburger {
+            display: inline-flex !important;
+            left: 0px;
+            position: relative;
+            top: 5px;
+            -webkit-transition: all 0.3s ease-in-out 0s;
+            transition: all 0.3s ease-in-out 0s;
+            width: 37px;
+            z-index: 999;
+        }
+
+        .header-left {
+            height: 100%;
+            display: flex;
+            align-items: center;
+        }
+
+        .clearfix {
+            overflow: auto;
+        }
+
+        .clearfix::after {
+            content: "";
+            clear: both;
+            display: block;
+        }
+
+        .h-100 {
+            height: 100% !important;
+        }
+
+        .float-left {
+            float: left !important;
+        }
+
+        .d-flex {
+            display: flex !important;
+        }
+
+        .pl-3,
+        .px-3 {
+            padding-left: 1rem !important;
+        }
+
+        .pt-3,
+        .py-3 {
+            padding-top: 1rem !important;
+        }
+
+        .w3-h1 {
+            font-size: 24px !important;
+            margin-bottom: 10px;
+        }
+
+        .w3-h2 {
+            font-size: 12px;
+            color: #014e83;
+            font-weight: 400;
+        }
+
+        a.w3-logo {
+            padding: 0px 10px;
+            border-right: 1px solid #0000001c;
+        }
+
+        .w3-button:hover {
+            color: #ffffff !important;
+            background-color: #003b64 !important;
+        }
+
+        .Menuitem {
+            background-color: #f4f4f4 !important;
+            color: black;
+        }
+
+        .footer {
+            padding: 10px;
+            left: 0;
+            bottom: 0;
+            background-color: #005693 !important;
+            color: #ffffff;
+            width: 100%;
+            position: fixed;
+            width: -webkit-fill-available;
+        }
+
+        tr.w3-highlighted td {
+            background: #2396d3;
+            color: #fff !important;
+        }
+
+        tr.w3-highlighted td a {
+            color: #fff !important;
+        }
+
+        .SelectedParameter {
+            display: none;
+            font-weight: bold;
+            text-align: left;
+        }
+
+        .w3-ul li {
+            border-bottom: 0px solid #ddd;
+        }
+
+        .w3-top-mob {
+            position: fixed;
+            width: 100%;
+            z-index: 1 !important;
+            background-color: #fff;
+        }
+
+
+
+
+        a.w3-right.w3-margin-top.w3-button.w3-padding-16.hamburger_new {
+            background: #003b64 !important;
+            text-decoration: none !important
+        }
+
+        a.w3-right.w3-margin-top.w3-button.w3-padding-16.hamburger_new:hover {
+            background: #003b64 !important;
+            text-decoration: none !important
+        }
+
+        .mobile_navi {
+            position: absolute !important;
+            top: 0 !important;
+            right: 0 !important;
+        }
+    </style>
+    <link href="../../Content/css/Home.css" rel="stylesheet">
+</head>
+
+<body class="w3-white" data-new-gr-c-s-check-loaded="14.1171.0" data-gr-ext-installed="">
+    <form method="post" action="./JJMRep_AbstractData_S.aspx" id="form1">
+        <div class="aspNetHidden">
+
+
+
+
+        </div>
+
+        <script type="text/javascript">
+            //<![CDATA[
+            var theForm = document.forms['form1'];
+            if (!theForm) {
+                theForm = document.form1;
+            }
+            function __doPostBack(eventTarget, eventArgument) {
+                if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+                    theForm.__EVENTTARGET.value = eventTarget;
+                    theForm.__EVENTARGUMENT.value = eventArgument;
+                    theForm.submit();
+                }
+            }
+            //]]>
+        </script>
+
+
+        <script
+            src="/JJM/WebResource.axd?d=CZq8EMl2D1wzPVRO-fbLpHeakbjWbJWkts36FMVJtCpwbnXk_5wE0q4pEX4tJIFwQc65pAIVA-2YkhzsC3064SvjC5g1&amp;t=638465253187615987"
+            type="text/javascript"></script>
+
+
+        <script
+            src="/JJM/ScriptResource.axd?d=2o3rrrmjWcXhSBpJJrnBlBSdWO1V_teIHKuWmNpq25NJQijlabNsU17FBg87HqcL1K1zCk8x4e42EqxvoeS_DoioNeBk2k5LpMXO1EA-dlOGa6AVyvNU8oSxUuU9xlmaOH-l91WX6IjRMlN-ZwcAfF4UDCQ1&amp;t=2e7d0aca"
+            type="text/javascript"></script>
+        <script
+            src="/JJM/ScriptResource.axd?d=JSkPooR3r9276J45EypoQxEj3t-hsCph_BKSBBlppOhxIwhDOKpWEwAduhiuuaiKYJrmmvnih0d7XI47cAxVAfNqho1mxO7ugAndxg9fDUPfdknqiC4HekzcB_h7QDbNEm5LX13qpws0ea1p3_H7YJGRXNEbVrHn6Jsx58xEv9TmK6tn0&amp;t=2e7d0aca"
+            type="text/javascript"></script>
+        <div class="aspNetHidden">
+
+
+
+        </div>
+
+        <!-- Sidebar/menu -->
+        <nav class="w3-sidebar w3-bar-block w3-gray w3-animate-left w3-top w3-text-light-grey w3-medium"
+            style="z-index: 3; width: 275px; display: none; left: 0;" id="mySidebar">
+            <div class="rep-header w3-hide-small">
+                <span class="jjmmenu w3-padding-16 w3-medium"
+                    style="display: inline; font-size: 14px !important;">CLOSE</span>
+                <a href="javascript:void()" class="w3-right w3-button w3-padding-16 w3-xlarge"
+                    style="display: inline; background-color: #003b64; color: white;" onclick="w3_close()">X</a>
+            </div>
+            <a href="javascript:void()" onclick="w3_close()"
+                class="w3-bar-item w3-button w3-center w3-padding-32 w3-medium"
+                style="background-color: #003b64; height: 80px;">CLOSE</a>
+            <div style="top: 80px;">
+                <a href="/JJM/JJMReports/Main.aspx" onclick="w3_close()"
+                    class="w3-bar-item w3-medium w3-button w3-left w3-padding-16 w3-border-top w3-border-bottom w3-border-white w3-green"><i
+                        class="fa fa-home w3-large"></i>&nbsp;Home</a>
+                <a id="hylnkentry" onclick="w3_close()"
+                    class="w3-bar-item w3-medium w3-button w3-left w3-padding-16 w3-border-bottom w3-border-white w3-amber"
+                    href="../../JJM/About.aspx"><i class="fa fa-edit w3-large"></i>&nbsp;Data Entry</a>
+
+                <a href="/JJM/JJMReports/SubMain.aspx?Rep=nL1nVzMoWpw%3d&amp;t=C" onclick="w3_close()"
+                    class="w3-bar-item w3-medium w3-button w3-left w3-padding-16 Menuitem w3-border-bottom w3-border-white"><i
+                        class="fa fa-table jjm-medium"></i>&nbsp;Program Monitoring</a>
+
+                <a href="/JJM/JJMReports/SubMain.aspx?Rep=P08u25mis%2bs%3d&amp;t=C" onclick="w3_close()"
+                    class="w3-bar-item w3-medium w3-button w3-left w3-padding-16 Menuitem w3-border-bottom w3-border-white"><i
+                        class="fa fa-table jjm-medium"></i>&nbsp;Physical Progress (In terms of FHTCs)</a>
+
+                <a href="/JJM/JJMReports/SubMain.aspx?Rep=GqADzR3x47Y%3d&amp;t=C" onclick="w3_close()"
+                    class="w3-bar-item w3-medium w3-button w3-left w3-padding-16 Menuitem w3-border-bottom w3-border-white"><i
+                        class="fa fa-table jjm-medium"></i>&nbsp;Basic Information</a>
+
+                <a href="/JJM/JJMReports/SubMain.aspx?Rep=s8FPuPEs%2fNQ%3d&amp;t=C" onclick="w3_close()"
+                    class="w3-bar-item w3-medium w3-button w3-left w3-padding-16 Menuitem w3-border-bottom w3-border-white"><i
+                        class="fa fa-table jjm-medium"></i>&nbsp;Financial Progress</a>
+
+                <a href="/JJM/JJMReports/SubMain.aspx?Rep=QoEVuBknNmE%3d&amp;t=C" onclick="w3_close()"
+                    class="w3-bar-item w3-medium w3-button w3-left w3-padding-16 Menuitem w3-border-bottom w3-border-white"><i
+                        class="fa fa-table jjm-medium"></i>&nbsp;Water Quality Progress</a>
+
+                <a href="/JJM/JJMReports/SubMain.aspx?Rep=zHESEKQjMJs%3d&amp;t=C" onclick="w3_close()"
+                    class="w3-bar-item w3-medium w3-button w3-left w3-padding-16 Menuitem w3-border-bottom w3-border-white"><i
+                        class="fa fa-table jjm-medium"></i>&nbsp;School/ Anganwadi/ Public Institutions</a>
+
+                <a href="/JJM/JJMReports/SubMain.aspx?Rep=XoLY3eJwUG8%3d&amp;t=C" onclick="w3_close()"
+                    class="w3-bar-item w3-medium w3-button w3-left w3-padding-16 Menuitem w3-border-bottom w3-border-white"><i
+                        class="fa fa-table jjm-medium"></i>&nbsp;SPM-NIWAS</a>
+
+                <a href="/JJM/JJMReports/SubMain.aspx?Rep=M2XRXwfih2Q%3d&amp;t=C" onclick="w3_close()"
+                    class="w3-bar-item w3-medium w3-button w3-left w3-padding-16 Menuitem w3-border-bottom w3-border-white">Field
+                    User App</a>
+
+                <a href="/JJM/JJMReports/SubMain.aspx?Rep=VhWY%2f0N3Bdc%3d&amp;t=C" onclick="w3_close()"
+                    class="w3-bar-item w3-medium w3-button w3-left w3-padding-16 Menuitem w3-border-bottom w3-border-white">Progess
+                    in priority areas</a>
+
+
+
+            </div>
+        </nav>
+
+        <!-- Top menu on small screens -->
+
+        <header class="w3-hide-large w3-white">
+            <div class="w3-col s12 w3-white">
+                <div class="w3-hide-large w3-hide-medium w3-top-mob">
+                    <div class="w3-padding">
+
+                        <span><a href=" https://jaljeevanmission.gov.in/ ">
+                                <img class="img-fluid ml-2 " src="/JJM//jjm/JJM_Master_Content/images/logo-jjm.svg"
+                                    style="height: 54px; padding-right: 4px; border-right: 1px solid #00000024;"></a></span>
+                        <span>
+                            <img src="/JJM//JJM_Login_Content/images/national_emblem.svg"
+                                alt="National Emblem of India logo" style="height: 54px;"></span>
+                        <span class="w3-h1 pt-2"
+                            style="position: absolute; font-size: 15px; top: 5px; padding-left: 10px;">JJM -
+                            Reports</span>
+                        <br>
+                        <span class="w3-h2 w3-imis-below-text w3-text-black"
+                            style="position: absolute; left: 115px; top: 40px; font-size: 8px; width: 175px; font-weight: 500;">Department
+                            of Drinking Water and Sanitation
+                            Ministry of Jal Shakti (GOI)
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </header>
+
+        <header class="w3-container w3-top w3-white w3-padding-16 header w3-hide-small w3-hide-medium"
+            style="border-bottom: 1px solid #003b6470; box-shadow: 0 3px 5px rgb(57 63 72 / 15%); z-index: 4;">
+            <div class="rep-header w3-hide-small w3-xlarge">
+                <span class="jjmmenu w3-padding-16" style="display: inline;">Main Menu</span>
+                <a href="javascript:void(0)" class="w3-right w3-margin-top w3-button w3-padding-16 hamburger_new"
+                    style="display: inline; background-color: #003b64; color: white;" onclick="w3_open()">☰</a>
+            </div>
+            <div class="header-left w3-hide-small">
+                <a href="https://jaljeevanmission.gov.in/" class="w3-logo" target="_blank">
+                    <img class="" src="/JJM/jjm/JJM_Master_Content/images/logo-jjm.svg" width="65">
+                </a>
+                <div class="w3-container clearfix" id="b-header">
+                    <div class="float-left d-flex h-100">
+                        <img src="/JJM/JJM_Login_Content/images/national_emblem.svg" alt="National Emblem of India logo"
+                            style="height: 74px;" class="align-self-center">
+                    </div>
+                    <div class="float-left d-flex h-100">
+                        <b class="align-self-center pl-3 pt-3 w3-heading-mobile"
+                            style="line-height: 17px !important; color: #003b64 !important;">
+                            <span class="w3-h1">JJM - Reports</span><br>
+                            <span class="w3-h2">Department of Drinking Water and Sanitation
+                                <br>
+                                Ministry of Jal Shakti (GOI)
+                            </span>
+                        </b>
+                    </div>
+
+                </div>
+                <div class="icon-position-3 w3-hide-small w3-hide-medium">
+                    <div class="row other-box_margin">
+                        <div class="col other-link-box">
+                            <div class="tile-icon">
+                                <a href="https://ejalshakti.gov.in/jjmreport/JJMIndia.aspx" target="_blank">
+                                    <img src="/JJM/JJMReports/Content/images/jjm_dashboard.png" width="30"
+                                        class="other-link-box-icon"></a>
+                            </div>
+                            <div class="other-link-box-text w3-small"><a
+                                    href="https://ejalshakti.gov.in/jjmreport/JJMIndia.aspx"
+                                    target="_blank">Dashboard</a></div>
+                        </div>
+                    </div>
+
+                    <div class="other-box_margin">
+                        <div class="col other-link-box">
+                            <div class="tile-icon">
+                                <a href="https://ejalshakti.gov.in/jjmreport/JJMRanking.aspx" target="_blank">
+                                    <img src="/JJM/JJMReports/Content/images/ranking.png" width="43"
+                                        class="other-link-box-icon"></a>
+                            </div>
+                            <div class="other-link-box-text w3-small"><a
+                                    href="https://ejalshakti.gov.in/jjmreport/JJMRanking.aspx" target="_blank">&nbsp;
+                                    JJS 2023</a></div>
+                        </div>
+                    </div>
+                    <div class="other-box_margin">
+                        <div class="col other-link-box">
+                            <div class="tile-icon">
+                                <a href="https://ejalshakti.gov.in/WQMIS/" target="_blank">
+                                    <img src="/JJM/JJMReports/Content/images/water_quality.png" width="25"
+                                        class="other-link-box-icon"></a>
+                            </div>
+                            <div class="other-link-box-text w3-small"><a href="https://ejalshakti.gov.in/WQMIS/"
+                                    target="_blank">WQMIS</a></div>
+                        </div>
+                    </div>
+                    <div class="other-box_margin">
+                        <div class="col other-link-box">
+                            <div class="tile-icon">
+                                <a href="https://ejalshakti.gov.in/webapi" target="_blank">
+                                    <img src="/JJM/JJMReports/Content/images/api.png" width="40"
+                                        class="other-link-box-icon"></a>
+                            </div>
+                            <div class="other-link-box-text w3-small"><a href="https://ejalshakti.gov.in/webapi"
+                                    target="_blank">Web API</a></div>
+                        </div>
+                    </div>
+                    <div class="other-box_margin">
+                        <div class="col other-link-box">
+                            <div class="tile-icon">
+                                <a href="https://ejalshakti.gov.in/krc" target="_blank">
+                                    <img src="/JJM/JJMReports/Content/images/training.png" width="30"
+                                        class="other-link-box-icon"></a>
+                            </div>
+                            <div class="other-link-box-text w3-small"><a href="https://ejalshakti.gov.in/krc"
+                                    target="_blank">Training Portal</a></div>
+                        </div>
+                    </div>
+                    <div class="other-box_margin">
+                        <div class="col other-link-box">
+                            <div class="tile-icon">
+                                <a href="https://ejalshakti.gov.in/niwas" target="_blank">
+                                    <img src="/JJM//Content/images/niwas.png" width="30"
+                                        class="other-link-box-icon"></a>
+                            </div>
+                            <div class="other-link-box-text w3-small"><a href="https://ejalshakti.gov.in/niwas"
+                                    target="_blank">NIWAS</a></div>
+                        </div>
+                    </div>
+
+                    <div id="divloginpopmob" class="other-box_margin">
+                        <div class="col other-link-box">
+                            <div class="tile-icon">
+                                <a id="lnklogin1" class="w3-small" href="javascript:__doPostBack('ctl00$lnklogin1','')"
+                                    style="text-decoration: none">
+
+                                    <img src="/JJM//content/images/login.png" width="55" class="other-link-box-icon">
+
+                                </a>
+                            </div>
+                            <div class="other-link-box-text w3-small">
+                                <a id="lnklogin2" class="w3-small" href="javascript:__doPostBack('ctl00$lnklogin2','')"
+                                    style="text-decoration: none">Login</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </header>
+
+        <!-- Overlay effect when opening sidebar on small screens -->
+        <div class="w3-overlay w3-animate-opacity" onclick="w3_close()" style="cursor: pointer" title="close side menu"
+            id="myOverlay"></div>
+        <div style="height: 76px;">
+        </div>
+        <div class="w3-row w3-padding w3-margin-top" style="background-color: rgb(213 211 211);">
+            <div class="w3-left w3-col l6 m6 s6">
+
+                <span id="jjmSitemapid" class="w3-medium"><a href="#jjmSitemapid_SkipLink"><img
+                            alt="Skip Navigation Links"
+                            src="/JJM/WebResource.axd?d=FUkyi5HrSUKvCHJs72tw_VL_JxefxvU5phPuZXd_8YgPgeWwRJ7gpPHD1mtcMsZrPdUw496fNv1VvaXldy9_SLUAjCE1&amp;t=638465253187615987"
+                            width="0" height="0" style="border-width:0px;"></a><span><a title="Home"
+                            class="RootNodeStyle" href="/JJM/Login.aspx?">Home</a></span><span
+                        class="PathSeparatorStyle"> &gt; </span><span class="CurrentNodeStyle">Format B1- Basic
+                        Habitation Information ( State wise )</span><a id="jjmSitemapid_SkipLink"></a></span>
+            </div>
+            <div class="w3-left w3-col l6 m6 s6">
+                <div class="w3-right">
+                    <a href="javascript:printdiv()" id="print"><i class="fa fa-print w3-xlarge"
+                            style="color: #003b64; padding-left: 20px;"></i></a>
+                </div>
+                <div class="w3-right">
+                    <a id="convertEXCEL" href="javascript:__doPostBack('ctl00$convertEXCEL','')"><i
+                            class="fa fa-file-excel-o w3-xlarge"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="w3-row" style="top: 80px; min-height: 740px; margin-bottom: 30px;">
+            <script type="text/javascript">
+                //<![CDATA[
+                Sys.WebForms.PageRequestManager._initialize('ctl00$ScriptManager1', 'form1', ['tctl00$upPnl', 'upPnl'], [], [], 900, 'ctl00');
+                //]]>
+            </script>
+
+            <div id="UpdateProgress1" style="display:none;" role="status" aria-hidden="true">
+
+                <center>
+                    <div style="position: fixed; top: 40%; left: 45%; z-index: 2000;">
+                        <i class="fa fa-spinner w3-spin" style="font-size: 64px"></i>
+                    </div>
+                </center>
+
+            </div>
+            <div id="upPnl">
+
+                <div class="w3-padding">
+                    <div class="w3-col l12 m12 s12 w3-padding w3-left-align">
+                        <h5 class="w3-margin-bottom w3-center" id="ReportHeading">
+                            <span id="CPHPage_lblHeader" class="w3-text-black">Format B1- Basic Habitation Information
+                                As On 01/04/2024</span>
+                        </h5>
+                    </div>
+                    <div class="w3-row w3-small w3-border-bottom ">
+                        <div class="w3-row">
+                            <div class="w3-col l4 m6 s12  w3-left w3-padding-small w3-input-group">
+                                <div class="w3-input-group-append">
+                                    <span id="CPHPage_lblyear"
+                                        class="w3-text-black w3-small w3-input-group-text">FinYear <span class="mand">*
+                                        </span></span>
+                                    <select name="ctl00$CPHPage$ddFinyear"
+                                        onchange="javascript:setTimeout('__doPostBack(\'ctl00$CPHPage$ddFinyear\',\'\')', 0)"
+                                        id="CPHPage_ddFinyear" class="w3-select w3-border w3-small w3-pale-yellow ">
+                                        <option value="-1">-Select Year-</option>
+                                        <option value="2019-2020">2019-2020</option>
+                                        <option value="2020-2021">2020-2021</option>
+                                        <option value="2021-2022">2021-2022</option>
+                                        <option value="2022-2023">2022-2023</option>
+                                        <option value="2023-2024">2023-2024</option>
+                                        <option selected="selected" value="2024-2025">2024-2025</option>
+
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="w3-col l4 m6 s12 w3-padding-small w3-left w3-input-group">
+                                <div class="w3-input-group-append">
+                                    <label id="lblSt" class="w3-text-black w3-small w3-input-group-text">State </label>
+
+                                    <select name="ctl00$CPHPage$ddState"
+                                        onchange="javascript:setTimeout('__doPostBack(\'ctl00$CPHPage$ddState\',\'\')', 0)"
+                                        id="CPHPage_ddState" class="w3-select w3-border w3-small w3-pale-yellow">
+                                        <option value="-1">All State</option>
+                                        <option value="1">Andaman &amp; Nicobar Islands</option>
+                                        <option value="2">Andhra Pradesh</option>
+                                        <option value="3">Arunachal Pradesh</option>
+                                        <option value="4">Assam</option>
+                                        <option value="5">Bihar</option>
+                                        <option value="33">Chhattisgarh</option>
+                                        <option value="7">Dadra &amp; Nagar Haveli And Daman &amp; Diu</option>
+                                        <option value="10">Goa</option>
+                                        <option value="11">Gujarat</option>
+                                        <option value="12">Haryana</option>
+                                        <option value="13">Himachal Pradesh</option>
+                                        <option value="14">Jammu &amp; Kashmir</option>
+                                        <option value="34">Jharkhand</option>
+                                        <option value="15">Karnataka</option>
+                                        <option value="16">Kerala</option>
+                                        <option value="37">Ladakh</option>
+                                        <option value="19">Lakshadweep</option>
+                                        <option value="17">Madhya Pradesh</option>
+                                        <option value="18">Maharashtra</option>
+                                        <option value="20">Manipur</option>
+                                        <option value="21">Meghalaya</option>
+                                        <option value="22">Mizoram</option>
+                                        <option value="23">Nagaland</option>
+                                        <option selected="selected" value="24">Odisha</option>
+                                        <option value="25">Puducherry</option>
+                                        <option value="26">Punjab</option>
+                                        <option value="27">Rajasthan</option>
+                                        <option value="28">Sikkim</option>
+                                        <option value="29">Tamil Nadu</option>
+                                        <option value="36">Telangana</option>
+                                        <option value="30">Tripura</option>
+                                        <option value="31">Uttar Pradesh</option>
+                                        <option value="35">Uttarakhand</option>
+                                        <option value="32">West Bengal</option>
+
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="w3-col l4 m6 s12 w3-padding-small w3-left  w3-input-group">
+                                <div class="w3-input-group-append">
+                                    <label id="lblAgency"
+                                        class="w3-text-black w3-small w3-input-group-text">Agency</label>
+                                    <select name="ctl00$CPHPage$ddAgency"
+                                        onchange="javascript:setTimeout('__doPostBack(\'ctl00$CPHPage$ddAgency\',\'\')', 0)"
+                                        id="CPHPage_ddAgency" class="w3-select w3-border w3-small w3-pale-yellow">
+                                        <option selected="selected" value="24">RWSS</option>
+
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="w3-col l4 m6 s12 w3-padding-small w3-left  w3-input-group">
+                                <div class="w3-input-group-append">
+                                    <label id="lbldistrict"
+                                        class="w3-text-black w3-small w3-input-group-text">District</label>
+                                    <select name="ctl00$CPHPage$ddDistrict"
+                                        onchange="javascript:setTimeout('__doPostBack(\'ctl00$CPHPage$ddDistrict\',\'\')', 0)"
+                                        id="CPHPage_ddDistrict" class="w3-select w3-border w3-small w3-pale-yellow">
+                                        <option selected="selected" value="-1">All District</option>
+                                        <option value="360">Angul</option>
+                                        <option value="348">Balangir</option>
+                                        <option value="344">Balasore</option>
+                                        <option value="353">Bargarh</option>
+                                        <option value="356">Bhadrak</option>
+                                        <option value="364">Boudh</option>
+                                        <option value="345">Cuttack</option>
+                                        <option value="355">DEOGARH</option>
+                                        <option value="346">Dhenkanal</option>
+                                        <option value="363">Gajapati</option>
+                                        <option value="351">Ganjam</option>
+                                        <option value="358">JAGATSINGHPUR</option>
+                                        <option value="359">Jajpur</option>
+                                        <option value="354">Jharsuguda</option>
+                                        <option value="349">Kalahandi</option>
+                                        <option value="347">Kandhamal</option>
+                                        <option value="357">Kendrapara</option>
+                                        <option value="342">Kendujhar</option>
+                                        <option value="362">KHORDHA</option>
+                                        <option value="350">Koraput</option>
+                                        <option value="369">Malkangiri</option>
+                                        <option value="343">Mayurbhanj</option>
+                                        <option value="368">Nabarangapur</option>
+                                        <option value="361">Nayagarh</option>
+                                        <option value="366">Nuapada</option>
+                                        <option value="352">Puri</option>
+                                        <option value="367">Rayagada</option>
+                                        <option value="340">Sambalpur</option>
+                                        <option value="365">Subarnapur</option>
+                                        <option value="341">Sundargarh</option>
+
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="w3-col l4 m6 s12 w3-padding-small w3-left  w3-input-group">
+                                <div class="w3-input-group-append">
+
+                                    <label class="w3-text-black w3-small w3-input-group-text">Block</label>
+                                    <select name="ctl00$CPHPage$ddBlock"
+                                        onchange="javascript:setTimeout('__doPostBack(\'ctl00$CPHPage$ddBlock\',\'\')', 0)"
+                                        id="CPHPage_ddBlock" class="w3-select w3-border w3-small w3-pale-yellow">
+                                        <option selected="selected" value="-1">All Block</option>
+
+                                    </select>
+
+                                </div>
+                            </div>
+                            <div class="w3-col l3 m6 s12 w3-padding-small w3-left  w3-input-group">
+                                <div class="w3-input-group-append">
+                                    <label class="w3-text-black w3-small w3-input-group-text">Category</label>
+                                    <select name="ctl00$CPHPage$ddCategory"
+                                        onchange="javascript:setTimeout('__doPostBack(\'ctl00$CPHPage$ddCategory\',\'\')', 0)"
+                                        id="CPHPage_ddCategory" class="w3-select w3-border w3-small w3-pale-yellow">
+                                        <option selected="selected" value="All">All</option>
+                                        <option value="Naxal">LWE Districts</option>
+                                        <option value="DDP">DDP Blocks</option>
+                                        <option value="MCD">Minority Districts</option>
+                                        <option value="Minority">Minority Blocks</option>
+                                        <option value="SCDominated">SC Concentrated habs</option>
+                                        <option value="STDominated">ST Concentrated habs</option>
+                                        <option value="SC_STDominated">SC/ST Concentrated habs</option>
+
+                                    </select>
+                                </div>
+                            </div>
+                            <div id="CPHPage_divvillages" class="w3-col l9 m6 s12 w3-padding-small  w3-input-group">
+                                <div class="w3-input-group-append w3-center">
+                                    <table id="CPHPage_rdbvillages"
+                                        class="JJMRadio w3-padding-small w3-border w3-light-grey  w3-text-gray w3-small "
+                                        cellpadding="3">
+                                        <tbody>
+                                            <tr>
+                                                <td><input id="CPHPage_rdbvillages_0" type="radio"
+                                                        name="ctl00$CPHPage$rdbvillages" value="0"
+                                                        checked="checked"><label for="CPHPage_rdbvillages_0">Total
+                                                        Villages (Excluding urbanised, Not feasible)</label></td>
+                                                <td><input id="CPHPage_rdbvillages_1" type="radio"
+                                                        name="ctl00$CPHPage$rdbvillages" value="1"
+                                                        onclick="javascript:setTimeout('__doPostBack(\'ctl00$CPHPage$rdbvillages$1\',\'\')', 0)"><label
+                                                        for="CPHPage_rdbvillages_1">Villages (excluding villages taken
+                                                        from SBM, Urbanised, Not feasible)</label></td>
+                                                <td><input id="CPHPage_rdbvillages_2" type="radio"
+                                                        name="ctl00$CPHPage$rdbvillages" value="2"
+                                                        onclick="javascript:setTimeout('__doPostBack(\'ctl00$CPHPage$rdbvillages$2\',\'\')', 0)"><label
+                                                        for="CPHPage_rdbvillages_2">Villages taken from SBM</label></td>
+                                                <td><input id="CPHPage_rdbvillages_3" type="radio"
+                                                        name="ctl00$CPHPage$rdbvillages" value="3"
+                                                        onclick="javascript:setTimeout('__doPostBack(\'ctl00$CPHPage$rdbvillages$3\',\'\')', 0)"><label
+                                                        for="CPHPage_rdbvillages_3">Urbanised villages</label></td>
+                                                <td><input id="CPHPage_rdbvillages_4" type="radio"
+                                                        name="ctl00$CPHPage$rdbvillages" value="4"
+                                                        onclick="javascript:setTimeout('__doPostBack(\'ctl00$CPHPage$rdbvillages$4\',\'\')', 0)"><label
+                                                        for="CPHPage_rdbvillages_4">Not feasible in JJM</label></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="w3-col l1 m6 s12 w3-padding-small w3-left  w3-input-group">
+                                <div class="w3-input-group-append">
+                                    <input type="submit" name="ctl00$CPHPage$btnShow" value="Show" id="CPHPage_btnShow"
+                                        class="w3-button w3-small w3-white w3-text-blue w3-border w3-border-blue w3-left">
+                                </div>
+                            </div>
+
+                            <div class="w3-col l2 m2 s12 w3-padding-small  w3-input-group  w3-right-align">
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="w3-row" id="printpage">
+                        <div id="CPHPage_reportContent">
+                            <div id="CPHPage_div_lblMsg" class="w3-row ABC ">
+                                <div class="w3-left w3-col l12 m12 s12 w3-padding-small">
+                                    <span id="CPHPage_lblMsg" class="w3-medium w3-left" style="color:Red;"></span>
+                                </div>
+                            </div>
+                            <div class="w3-row w3-margin-top showprint">
+                                <div
+                                    class="w3-left w3-col l12 m12 s12 w3-padding-small SelectedParameter w3-SelectedParameter">
+                                    <span id="CPHPage_lblselectedparameter"
+                                        class="w3-text-black w3-bold w3-left w3-left-align w3-medium"
+                                        style="font-weight:bold;">Finyear - 2024-2025, State - Odisha, Agency - All
+                                        Agency, District - All District, Block - All Block, Category - All</span>
+                                </div>
+                            </div>
+                            <div class="w3-col l12 m12 s12 w3-responsive w3-margin-bottom">
+
+                                <div>
+                                    <divfootertext></divfootertext>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="w3-panel w3-pale-yellow  w3-leftbar w3-border-red w3-text-red w3-left-align w3-justify">
+                        <p>Note:- If any new habitation is added in HGJ village during YDU process then that habitation
+                            will not be shown here, that habitation will be counted in entry module, after that that
+                            habitation will be 100% coverage, then automatically that habitation will open here.</p>
+                    </div>
+                </div>
+                <div id="CPHPage_Popupmsg" class="w3-modal w3-centered">
+                    <div class="w3-modal-content" style="margin-top: 130px;">
+                        <div class="w3-black w3-display-container w3-padding w3-text-yellow">
+                            <span>
+                                <a id="CPHPage_btnClosemsg" class="w3-button w3-display-topright"
+                                    href="javascript:__doPostBack('ctl00$CPHPage$btnClosemsg','')">×</a></span>
+
+                            <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                            <span id="CPHPage_lblhdr" class="w3-medium">Alert Message</span>
+                        </div>
+                        <div class="w3-container ">
+                            <div class="w3-row">
+                                <div class="w3-col l12 m12 s12 w3-padding-small w3-Center">
+                                    <h6>
+                                        <span id="CPHPage_lblmsgSave" class="w3-text-green w3-medium"
+                                            style="font-weight:bold;"></span>
+                                    </h6>
+                                    <h6>
+                                        <span id="CPHPage_PopMessage" class="w3-text-red w3-medium w3-left"
+                                            style="font-weight:bold;"></span>
+                                    </h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <br>
+        <br>
+        <br>
+        <div id="FixedHDR_BG" class="bottomMenu hide">&nbsp;</div>
+        <footer class="w3-container w3-padding footer">
+            <div class="copyright w3-center">
+                <p>Copyright © Designed &amp; Developed by <a href="#" style="color: white; text-decoration: underline"
+                        target="_blank">NIC</a> 2021</p>
+            </div>
+        </footer>
+
+
+
+        <script type="text/javascript">
+            //<![CDATA[
+            Sys.Application.add_init(function () {
+                $create(Sys.UI._UpdateProgress, { "associatedUpdatePanelId": null, "displayAfter": 500, "dynamicLayout": true }, null, null, $get("UpdateProgress1"));
+            });
+            //]]>
+        </script>
+        <span style="display: none !important;"><input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET"
+                value=""></span><span style="display: none !important;"><input type="hidden" name="__EVENTARGUMENT"
+                id="__EVENTARGUMENT" value=""></span><span style="display: none !important;"><input type="hidden"
+                name="__LASTFOCUS" id="__LASTFOCUS" value=""></span><span style="display: none !important;"><input
+                type="hidden" name="__VIEWSTATE" id="__VIEWSTATE"
+                value="/wEPDwUJLTc3MDAyODAyD2QWAmYPZBYCAgEPZBYKAgEPFgIeC18hSXRlbUNvdW50AgkWEmYPZBYCZg8VBBwvSkpNL0pKTVJlcG9ydHMvU3ViTWFpbi5hc3B4Dm5MMW5Wek1vV3B3JTNkLDxpIGNsYXNzPSJmYSBmYS10YWJsZSBqam0tbWVkaXVtIj48L2k+Jm5ic3A7ElByb2dyYW0gTW9uaXRvcmluZ2QCAQ9kFgJmDxUEHC9KSk0vSkpNUmVwb3J0cy9TdWJNYWluLmFzcHgQUDA4dTI1bWlzJTJicyUzZCw8aSBjbGFzcz0iZmEgZmEtdGFibGUgamptLW1lZGl1bSI+PC9pPiZuYnNwOyVQaHlzaWNhbCBQcm9ncmVzcyAoSW4gdGVybXMgb2YgRkhUQ3MpZAICD2QWAmYPFQQcL0pKTS9KSk1SZXBvcnRzL1N1Yk1haW4uYXNweA5HcUFEelIzeDQ3WSUzZCw8aSBjbGFzcz0iZmEgZmEtdGFibGUgamptLW1lZGl1bSI+PC9pPiZuYnNwOxFCYXNpYyBJbmZvcm1hdGlvbmQCAw9kFgJmDxUEHC9KSk0vSkpNUmVwb3J0cy9TdWJNYWluLmFzcHgQczhGUHVQRXMlMmZOUSUzZCw8aSBjbGFzcz0iZmEgZmEtdGFibGUgamptLW1lZGl1bSI+PC9pPiZuYnNwOxJGaW5hbmNpYWwgUHJvZ3Jlc3NkAgQPZBYCZg8VBBwvSkpNL0pKTVJlcG9ydHMvU3ViTWFpbi5hc3B4DlFvRVZ1QmtuTm1FJTNkLDxpIGNsYXNzPSJmYSBmYS10YWJsZSBqam0tbWVkaXVtIj48L2k+Jm5ic3A7FldhdGVyIFF1YWxpdHkgUHJvZ3Jlc3NkAgUPZBYCZg8VBBwvSkpNL0pKTVJlcG9ydHMvU3ViTWFpbi5hc3B4DnpIRVNFS1FqTUpzJTNkLDxpIGNsYXNzPSJmYSBmYS10YWJsZSBqam0tbWVkaXVtIj48L2k+Jm5ic3A7JlNjaG9vbC8gQW5nYW53YWRpLyBQdWJsaWMgSW5zdGl0dXRpb25zZAIGD2QWAmYPFQQcL0pKTS9KSk1SZXBvcnRzL1N1Yk1haW4uYXNweA5Yb0xZM2VKd1VHOCUzZCw8aSBjbGFzcz0iZmEgZmEtdGFibGUgamptLW1lZGl1bSI+PC9pPiZuYnNwOwlTUE0tTklXQVNkAgcPZBYCZg8VBBwvSkpNL0pKTVJlcG9ydHMvU3ViTWFpbi5hc3B4Dk0yWFJYd2ZpaDJRJTNkAA5GaWVsZCBVc2VyIEFwcGQCCA9kFgJmDxUEHC9KSk0vSkpNUmVwb3J0cy9TdWJNYWluLmFzcHgQVmhXWSUyZjBOM0JkYyUzZAAZUHJvZ2VzcyBpbiBwcmlvcml0eSBhcmVhc2QCAg8PFgIeB1Zpc2libGVoZGQCAw8PFgIfAWhkZAIEDxYCHwFoZAILD2QWAmYPZBYCAgEPZBYUAgEPDxYCHgRUZXh0BThGb3JtYXQgQjEtIEJhc2ljIEhhYml0YXRpb24gSW5mb3JtYXRpb24gQXMgT24gMDEvMDQvMjAyNGRkAgUPEGQQFQcNLVNlbGVjdCBZZWFyLQkyMDE5LTIwMjAJMjAyMC0yMDIxCTIwMjEtMjAyMgkyMDIyLTIwMjMJMjAyMy0yMDI0CTIwMjQtMjAyNRUHAi0xCTIwMTktMjAyMAkyMDIwLTIwMjEJMjAyMS0yMDIyCTIwMjItMjAyMwkyMDIzLTIwMjQJMjAyNC0yMDI1FCsDB2dnZ2dnZ2cWAQIGZAIHDxBkEBUjCUFsbCBTdGF0ZRlBbmRhbWFuICYgTmljb2JhciBJc2xhbmRzDkFuZGhyYSBQcmFkZXNoEUFydW5hY2hhbCBQcmFkZXNoBUFzc2FtBUJpaGFyDENoaGF0dGlzZ2FyaCREYWRyYSAmIE5hZ2FyIEhhdmVsaSBBbmQgRGFtYW4gJiBEaXUDR29hB0d1amFyYXQHSGFyeWFuYRBIaW1hY2hhbCBQcmFkZXNoD0phbW11ICYgS2FzaG1pcglKaGFya2hhbmQJS2FybmF0YWthBktlcmFsYQZMYWRha2gLTGFrc2hhZHdlZXAOTWFkaHlhIFByYWRlc2gLTWFoYXJhc2h0cmEHTWFuaXB1cglNZWdoYWxheWEHTWl6b3JhbQhOYWdhbGFuZAZPZGlzaGEKUHVkdWNoZXJyeQZQdW5qYWIJUmFqYXN0aGFuBlNpa2tpbQpUYW1pbCBOYWR1CVRlbGFuZ2FuYQdUcmlwdXJhDVV0dGFyIFByYWRlc2gLVXR0YXJha2hhbmQLV2VzdCBCZW5nYWwVIwItMQExATIBMwE0ATUCMzMBNwIxMAIxMQIxMgIxMwIxNAIzNAIxNQIxNgIzNwIxOQIxNwIxOAIyMAIyMQIyMgIyMwIyNAIyNQIyNgIyNwIyOAIyOQIzNgIzMAIzMQIzNQIzMhQrAyNnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZxYBAhhkAgkPEGQQFQEEUldTUxUBAjI0FCsDAWcWAWZkAgsPEGQQFR8MQWxsIERpc3RyaWN0BUFuZ3VsCEJhbGFuZ2lyCEJhbGFzb3JlB0JhcmdhcmgHQmhhZHJhawVCb3VkaAdDdXR0YWNrB0RFT0dBUkgJRGhlbmthbmFsCEdhamFwYXRpBkdhbmphbQ1KQUdBVFNJTkdIUFVSBkphanB1cgpKaGFyc3VndWRhCUthbGFoYW5kaQlLYW5kaGFtYWwKS2VuZHJhcGFyYQlLZW5kdWpoYXIHS0hPUkRIQQdLb3JhcHV0Ck1hbGthbmdpcmkKTWF5dXJiaGFuagxOYWJhcmFuZ2FwdXIITmF5YWdhcmgHTnVhcGFkYQRQdXJpCFJheWFnYWRhCVNhbWJhbHB1cgpTdWJhcm5hcHVyClN1bmRhcmdhcmgVHwItMQMzNjADMzQ4AzM0NAMzNTMDMzU2AzM2NAMzNDUDMzU1AzM0NgMzNjMDMzUxAzM1OAMzNTkDMzU0AzM0OQMzNDcDMzU3AzM0MgMzNjIDMzUwAzM2OQMzNDMDMzY4AzM2MQMzNjYDMzUyAzM2NwMzNDADMzY1AzM0MRQrAx9nZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnFgFmZAINDxBkEBUBCUFsbCBCbG9jaxUBAi0xFCsDAWcWAWZkAg8PEGRkFgFmZAIRDxYCHwFnFgICAQ8QZGQWAWZkAhUPDxYCHwFoZGQCGQ9kFgQCAw8PFgIfAgV0RmlueWVhciAtIDIwMjQtMjAyNSwgU3RhdGUgLSBPZGlzaGEsIEFnZW5jeSAtIEFsbCBBZ2VuY3ksIERpc3RyaWN0IC0gQWxsIERpc3RyaWN0LCBCbG9jayAtIEFsbCBCbG9jaywgQ2F0ZWdvcnkgLSBBbGxkZAIFDxYCHwAC/////w9kZD8X5cslpijovoKazKWuwOTkAd9S"></span><span
+            style="display: none !important;"><input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR"
+                value="5EA25415"></span><span style="display: none !important;"><input type="hidden"
+                name="__EVENTVALIDATION" id="__EVENTVALIDATION"
+                value="/wEdAGVNGnkFvZ4lNwLCV6FR5HIy9PN/9thIv9fXvVGfv3EagZDxyqRy8vnR0SwhB5oR/UpbglDII2uIW1E8eON4YnmFDfqrucT/qZzm06eLVtSH5ijUZQGXW2ir/5AadlNnCmzPqQR67txBcIrqEwfuWsPP3qgbcPhpyOlk62E8JBhxBSoVPgsafGywyvTsGPlOb3nJNgC2Xa2lW41PhJk1EgkRB47FUO0rAivks29yop5eHEm/XRICbObwz1xDw7I5hEdqePC4CGFa5DP4p4BA7OfbY7yvSuBvGyCj5MTE4g/cK7Nhm4HyRXiF9hpTacYfILpJQYt+3s8I1jNjZstvK2X2EJk+I225335GOaILqmpxvGCzm6en5DJpZk6JkShuqwuDgapJrH7PwwKM8yzxZle85lyEpdiH+7XB48002D964lQmdI+Y+OZJ3Ok9/SSULTPI2JweiP4UTYgMgP5aU+k3w2WemMTH6AZtLmTO7SXtmS6wLcRO9D9Enz7SHILVAEIuGTBRrMJDAPF2TX59YyIEk+Jf6wS2NVDlQ9QjbG4ni3ELkIxRORdZsRc9ZKHRELVJL9HWlFfs0I+RXtJ4ZAfe5LOninzgwhicSCNJvUjdNftH9DPrNsjoK0DsbE2V3UjU8oYKhK45lCQ1xrDM3BN6YIZnoQudKeI+/b2bN/wRN+dm7+aw91qN1UnGMsUhIhSu6NNc1e8uNdK/bBRloUoufUVre7e9pf8I3ugMc3w/+Y8cL3sd/vk7h8td0KdwO6BhuV/cbc2zsKMdwfSU4472Uy5NIg1yce1L5ljedFG/PgQ0SlRLVmkkqvzqxP+cCU/lVxy5nEszhWlyoP2/LgyW97mVQW7JGkiV7LZR0hdulerPy8G5xe/sFSdRQvsGaMiJrV0qeLrPGLCHxFw/DGtVt6qAV5nQwTkiI7960rRRxz9WYE8ADMLZTzQGzC3bAZh7DKo2oyL0dbAooXoU41N0dYtAHgZNpflC9NIahOJZR/kiYP4x+6PUHujC+k2NVsLUoJznXtarOqmtwhM2H27pclP68mISv74F31ot2ZSfc7A7KLq79IilgGioaFaciP4+su8w63o0N4COFrcFU2P5/Cefs/n/Oxb7xoobtPZnxqyQPYh2LhCPt5CA7Pc7rdI0pJ5Okjo8MEVAgTgcnhHlu53qnLKopKCyD6Tmh7Avdk0N3nsaTH5dRABg4eqqzPnBTJJML/V5gnZlXnQH5hjcV+W+aASbinOBG36mGIXg8EWW8XqqbVRy6lLWD8x8ZgfA/UYq39PTaVO2mg+FLt4Osh9qGgtTJSw37aJ3hZStDhDhRSnGr2P1JZoG+X3CuqkPilSHj0ozrBsPdKul+SjfKFjsJMOfI91nFMk7FDZCWwVIywDMHXovT8I7RLmI/jW6BGrI0Qxtf6eGYhQJXLwtZyhbrqSu2MYUBEGxLKxivbjwWlIRFobuBFS3L15NUsXjiKNJ+XoIJlFc8Y2K6bmEedx9PW9/pIja59Ddm0O+0Y7Vf9iEYkN0GXFNrmGV5jDSymuZHUcfHn8s3euatU4NtA2ZByrHfG/e221sCmDwC1NUaaJv/EZXSlxPJmkAgjuC9E636b4hmL9InZXqxIV/wlG3sDClrIMd0OyjdAIREmeFfLQaEg6beVHNII/Sm0l2lrxt/TOEYSAmfIF8iymQ2gla1hbNmybcGgG7Pw7uA/cg41S8ztD5s6iNfaPXd2OPFV6LL+8pKPHY0iLQ59rtY+jHFV1isjUT84vb4AGDnyjOiEDQZBTJdZJ/nvnK7jasgrjs4i9346VxbXZ9/nLsMt16fHKDbZgd+H7s4gD2uTl37KPOi+YtNq13ze4dqmG6XfmCOp3twblWX6x9CviAf5ahzGhHbEBnJ8PmrBOagVwZ27k1WmxHwKe2rHYv+Aq1IY4bRbvagqiayKrimm8aMNRoVbXvNolRzLdAYeYuwNOPpnaqzdsKQNfHB/Soe+U3UWoeRMGLWZqOSFNP4bHNTt8ezFQZsnzCzgTJeaWyzqHNew5fJAys1xm3+9bMhHwn6gGUfKpXZ3+GVeDlZ/FWGRQONZnc1MnAd+/gCSbK3BTzsaeXCYZdY819+BseP6Lrgwp0L6CDxE+XUAwO84RWJ/8CXbUo7L1r5ucds7HOQTnX+HCyqqS0MUdU5IGjzBL029r/"></span>
+    </form>
+    <script>
+        myID = document.getElementById("FixedHDR_BG");
+
+        var myScrollFunc = function () {
+            var y = window.scrollY;
+            if (y >= 80) {
+                FixedHDR_BG.className = "bottomMenu show"
+            } else {
+                FixedHDR_BG.className = "bottomMenu hide"
+            }
+        };
+
+        window.addEventListener("scroll", myScrollFunc);
+    </script>
+    <script type="text/javascript">
+        // Script to open and close sidebar
+        function w3_open() {
+            document.getElementById("mySidebar").style.display = "block";
+            document.getElementById("myOverlay").style.display = "block";
+        }
+
+        function w3_close() {
+            document.getElementById("mySidebar").style.display = "none";
+            document.getElementById("myOverlay").style.display = "none";
+        }
+
+        // Modal Image Gallery
+        function onClick(element) {
+            document.getElementById("img01").src = element.src;
+            document.getElementById("modal01").style.display = "block";
+            var captionText = document.getElementById("caption");
+            captionText.innerHTML = element.alt;
+        }
+
+    </script>
+    <script src="/JJM/JJMReports/Content/JS/CommaSapreter.js" type="text/javascript"></script>
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            currency();
+        });
+        function pageLoad() {
+            currency();
+            tablerowhighlighted();
+        }
+        function currency() {
+            var URL = document.location.href;
+            var PageName = getPageName(URL).toLowerCase();
+            var str = "List";
+            var myarr = ["rpt_schemephysicalprogressdetails", "rpt_contactdetails", "rep_financialphysicalprogressreport_s", "rpt_viewschemeprofile", "rpt_rws_statewiseallocrelexp_financialprogress", "rpt_rws_statewiseallocrelexp_financialprogress_a_b", "rpt_CommunityCenter_Expenditure_Schemes"];
+            var arraycontainsturtles = (myarr.indexOf(PageName) > -1);
+            if ((PageName.indexOf(str.toLowerCase()) != -1) || (arraycontainsturtles == true)) {
+                if (PageName == "rep_financialphysicalprogressreport_s" || PageName == "rpt_svs_scheme_exception_list") {
+                    tableRow("#tableReportTable1");
+                    tableRow("#tableReportTable2");
+                }
+            }
+            else {
+                tableRow("#tableReportTable");
+            }
+
+        }
+        function tableRow(tableId) {
+            $(tableId + " td").each(function () {
+                var x = $(this);
+                if (x.hasClass('w3-nocomma-sapreter')) {
+                }
+                else {
+                    var num = $(this).text();
+                    if (isNumeric(num) == true) {
+                        var commaNum = numberWithCommas($.trim(num));
+                        if (x.children().length >= 1) {
+                            try {
+                                if (x.children().hasClass('w3-nocomma-sapreter')) {
+                                }
+                                else {
+                                    x.children()[1].innerHTML = $.trim(commaNum);
+                                }
+                            }
+                            catch (err) {
+                                if (x.children().hasClass('w3-nocomma-sapreter')) {
+                                }
+                                else {
+                                    x.children()[0].innerHTML = $.trim(commaNum);
+                                }
+                            }
+                        }
+                        else {
+                            $(this).text($.trim(commaNum));
+                        }
+                    }
+                }
+            });
+            $(tableId + " th").each(function () {
+                var x = $(this);
+                var num = $(this).text();
+                if (isNumeric(num) == true) {
+                    var commaNum = numberWithCommas($.trim(num));
+                    if (x.children().length >= 1) {
+                        try {
+                            x.children()[1].innerHTML = $.trim(commaNum);
+                        }
+                        catch (err) {
+                            x.children()[0].innerHTML = $.trim(commaNum);
+                        }
+                    }
+                    else {
+                        $(this).text($.trim(commaNum));
+                    }
+                }
+            });
+        }
+        function isNumeric(str) {
+            if (typeof str != "string") return false // we only process strings!  
+            return !isNaN(str) && // use type coercion to parse the _entirety_ of the string (`parseFloat` alone does not do this)...
+                !isNaN(parseFloat(str)) // ...and ensure strings of whitespace fail
+        }
+        function getPageName(url) {
+            var index = url.lastIndexOf("/") + 1;
+            var filenameWithExtension = url.substr(index);
+            var filename = filenameWithExtension.split(".")[0]; // <-- added this line
+            return filename;                                    // <-- added this line
+        }
+        function tablerowhighlighted() {
+            $('#tableReportTable tr').click(function (e) {
+                if ($(this).hasClass('w3-highlighted')) {
+                    $(this).removeClass('w3-highlighted');
+                }
+                else {
+                    $('#tableReportTable tr').removeClass('w3-highlighted');
+                    $(this).addClass('w3-highlighted');
+                }
+            });
+            $('#tableReportTable1 tr').click(function (e) {
+                if ($(this).hasClass('w3-highlighted')) {
+                    $(this).removeClass('w3-highlighted');
+                }
+                else {
+                    $('#tableReportTable1 tr').removeClass('w3-highlighted');
+                    $(this).addClass('w3-highlighted');
+                }
+            });
+            $('#tableReportTable2 tr').click(function (e) {
+                if ($(this).hasClass('w3-highlighted')) {
+                    $(this).removeClass('w3-highlighted');
+                }
+                else {
+                    $('#tableReportTable2 tr').removeClass('w3-highlighted');
+                    $(this).addClass('w3-highlighted');
+                }
+            });
+        }
+
+
+
+
+
+
+    </script>
+
+
+</body><grammarly-desktop-integration data-grammarly-shadow-root="true"></grammarly-desktop-integration>
+
+</html>
